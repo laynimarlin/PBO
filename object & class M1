@@ -1,0 +1,33 @@
+class mahasiswa:
+    def __init__(self, nama, nim, tempat_tanggal_lahir, alamat, No_hp):
+        self.nama = nama
+        self.nim = nim
+        self.tempat_tanggal_lahir = tempat_tanggal_lahir
+        self.alamat = alamat
+        self.No_hp = No_hp
+
+    def tampilkan_data(self):
+        print("Nama              : ", self.nama)
+        print("NIM               : ", self.nim)
+        print("Tempat/Tanggal Lahir : ", self.tempat_tanggal_lahir)
+        print("Alamat            : ", self.alamat)
+        print("No. HP            : ", self.No_hp)
+        print("-" * 40)
+
+daftar_mahasiswa = []
+jumlah = int(input("Masukkan Jumlah Mahasiswa : "))
+
+for i in range(jumlah):
+    print(f"\n Masukkan Data Mahasiswa ke-{i+1}")
+    nama = input("Nama : ")
+    nim = input("Nim : ")
+    tempat_tanggal_lahir = input("Tempat Tangal Lahir : ")
+    alamat = input("Alamat : ")
+    No_hp = input("No. HP : ")
+
+    mhs = mahasiswa(nama, nim, tempat_tanggal_lahir, alamat, No_hp)
+    daftar_mahasiswa.append(mhs)
+
+print("\nData Mahasiswa")
+for mhs in daftar_mahasiswa:
+    mhs.tampilkan_data()
