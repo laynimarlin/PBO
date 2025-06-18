@@ -1,0 +1,101 @@
+class Mahasiswa:
+    def __init__(self, nama, nim, tgl_lahir, alamat, no_hp):
+        self.__nama = nama
+        self.__nim = nim
+        self.__tgl_lahir = tgl_lahir
+        self.__alamat = alamat
+        self.__no_hp = no_hp
+
+    # Getter dan Setter untuk nama
+    def get_nama(self):
+        return self.__nama
+
+    def set_nama(self, nama):
+        self.__nama = nama
+
+    # Getter dan Setter untuk NIM
+    def get_nim(self):
+        return self.__nim
+
+    def set_nim(self, nim):
+        self.__nim = nim
+
+    # Getter dan Setter untuk tanggal lahir
+    def get_tgl_lahir(self):
+        return self.__tgl_lahir
+
+    def set_tgl_lahir(self, tgl_lahir):
+        self.__tgl_lahir = tgl_lahir
+
+    # Getter dan Setter untuk alamat
+    def get_alamat(self):
+        return self.__alamat
+
+    def set_alamat(self, alamat):
+        self.__alamat = alamat
+
+    # Getter dan Setter untuk no_hp
+    def get_no_hp(self):
+        return self.__no_hp
+
+    def set_no_hp(self, no_hp):
+        self.__no_hp = no_hp
+
+
+class Fakultas:
+    def __init__(self, nama):
+        self.nama = nama
+        self.data = []
+
+    def tambah(self):
+        n = int(input("Jumlah mahasiswa: "))
+        for a in range(n):
+            nama = input("Nama: ")
+            nim = input("NIM: ")
+            tgl = input("Tanggal Lahir: ")
+            alamat = input("Alamat: ")
+            hp = input("No HP: ")
+            self.data.append(Mahasiswa(nama, nim, tgl, alamat, hp))
+
+    def lihat(self):
+        no = 1
+        for mhs in self.data:
+            print(no, mhs.get_nama(), mhs.get_nim(), mhs.get_tgl_lahir(), mhs.get_alamat(), mhs.get_no_hp())
+            no += 1
+
+    def ubah(self):
+        no = 1
+        for mhs in self.data:
+            print(no, mhs.get_nama())
+            no += 1
+        pilih = int(input("Pilih no mahasiswa: ")) - 1
+        self.data[pilih].set_nama(input("Nama baru: "))
+        self.data[pilih].set_nim(input("NIM baru: "))
+        self.data[pilih].set_tgl_lahir(input("Tanggal lahir baru: "))
+        self.data[pilih].set_alamat(input("Alamat baru: "))
+        self.data[pilih].set_no_hp(input("No HP baru: "))
+
+
+dakwah = Fakultas("Fakultas Dakwah")
+syariah = Fakultas("Fakultas Syariah")
+ekbis = Fakultas("Fakultas Ekonomi dan Bisnis Islam")
+
+for i in range(10):
+    print("\nMenu:\n1. Tambah Mahasiswa\n2. Lihat Mahasiswa\n3. Ubah Data Mahasiswa\n4. Keluar")
+    pilih = input("Pilih menu: ")
+    print("1. Fakultas Dakwah\n2. Fakultas Syariah\n3. Fakultas Ekbis")
+    f = input("Pilih fakultas: ")
+    if f == "1":
+        fakultas = dakwah
+    elif f == "2":
+        fakultas = syariah
+    else:
+        fakultas = ekbis
+    if pilih == "1":
+        fakultas.tambah()
+    elif pilih == "2":
+        fakultas.lihat()
+    elif pilih == "3":
+        fakultas.ubah()
+    elif pilih == "4":
+        break
