@@ -1,0 +1,58 @@
+class HitunganDasar:
+    def penjumlahan(self, angka1, angka2):
+        return angka1 + angka2
+
+    def pengurangan(self, angka1, angka2):
+        return angka1 - angka2
+
+class Perkalian:
+    def __init__(self):
+        self.dasar = HitunganDasar()
+
+    def hitung(self, angka1, angka2):
+        hasil = 0
+        positif = not ((angka1 < 0) ^ (angka2 < 0))
+
+        angka1_positif = angka1 if angka1 >= 0 else -angka1
+        angka2_positif = angka2 if angka2 >= 0 else -angka2
+
+        for x in range(angka2_positif):
+            hasil = self.dasar.penjumlahan(hasil, angka1_positif)
+
+        return hasil if positif else -hasil
+
+
+class Pembagian:
+    def __init__(self):
+        self.dasar = HitunganDasar()
+
+    def hitung(self, angka1, angka2):
+        if angka2 == 0:
+            return "Tidak bisa dibagi dengan nol!"
+
+        hasil = 0
+        positif = not ((angka1 < 0) ^ (angka2 < 0))  # xor untuk cek tanda
+
+        angka1_positif = angka1 if angka1 >= 0 else -angka1
+        angka2_positif = angka2 if angka2 >= 0 else -angka2
+
+        temp = angka1_positif
+
+        for y in range(angka1_positif + 1):
+            kurang = self.dasar.pengurangan(temp, angka2_positif)
+            if kurang >= 0:
+                temp = kurang
+                hasil = self.dasar.penjumlahan(hasil, 1)
+            
+
+        return hasil if positif else -hasil
+
+perkalian = Perkalian()
+pembagian = Pembagian()
+
+print("Perkalian 5 x 3 =", perkalian.hitung(5, 3))
+print("Perkalian -4 x 2 =", perkalian.hitung(-4, 2))
+print("Perkalian -3 x -3 =", perkalian.hitung(-3, -3))
+print("Pembagian 10 ÷ 2 =", pembagian.hitung(10, 2))
+print("Pembagian 9 ÷ -3 =", pembagian.hitung(9, -3))
+print("Pembagian -12 ÷ -4 =", pembagian.hitung(-12, -4))
